@@ -11,6 +11,10 @@ import re
 import gzip
 from argparse import ArgumentParser
 
+###########################################################################
+# FUNCTIONS
+###########################################################################
+
 def CheckGZip(filename):
     '''
     This function checks if the input file is gzipped.
@@ -38,22 +42,27 @@ def OpenFile(filename,mode):
         sys.exit('Can\'t open file, reason:',str(error),'\n') 
     return infile
 
+
+
+###########################################################################
+# GET INPUT
+###########################################################################
+
 # Input from command line
 parser = ArgumentParser()
-parser.add_argument('-i', '--input', dest='input',help='Input file to find IDs from ".frag"')#, default = 'test.frag.gz')
-parser.add_argument('-f', '--fastq', dest='fastq',help='Fastq file with raw reads')#,  default = 'test.fastq.gz')
+parser.add_argument('-i', '--input', dest='input',help='Input file to find IDs from ".frag"')
+parser.add_argument('-f', '--fastq', dest='fastq',help='Fastq file with raw reads')
+parser.add_argument('-o', dest='o', help='Output filename')
 args = parser.parse_args()
 
 # Define input as variables
-if args.input:
-    alignmentfrag = args.input
-else:
-    sys.exit('You need to input a ".frag" file with the -i flag')
-    
-if args.fastq:
-    fastq = args.fastq
-else:
-    sys.exit('You need to input a fastq file with the -f flag')
+alignmentfrag = args.input
+fastq = args.fastq
+o = args.o
+
+# Open log file
+logname = o+"/"+o+".log"
+logfile = OpenFile(logname,"a+") 
 
 # Define ID pattern
 ID_pattern = re.compile(b'\s([\w-]+)\srunid=')
@@ -65,17 +74,9 @@ infile = OpenFile(alignmentfrag,'rb')
 # Open fastq file
 fastq_infile = OpenFile(fastq,'rb')
 
-# Open output file for ID.txt
-#ID_outfilename = 'ID.txt'
-
-#try:
-#    ID_outfile = open(ID_outfilename,'w')
-#except IOError as error:
-#    sys.stdout.write('Could not write file due to: '+str(error))
-#    sys.exit(1)
  
 # Open output file for matching reads:
-match_outfilename = 'match_IDs.fastq'
+match_outfilename = o+"/"+'match_IDs.fastq'
     
 try:
     match_outfile = open(match_outfilename,'w')
@@ -84,13 +85,17 @@ except IOError as error:
     sys.exit(1)
 
 # Open output file for mot matching reads:    
-nomatch_outfilename = 'nomatch_IDs.fastq'
+nomatch_outfilename = o+"/"+'nomatch_IDs.fastq'
     
 try:
     nomatch_outfile = open(nomatch_outfilename,'w')
 except IOError as error:
     sys.stdout.write('Could not write file due to: '+str(error))
     sys.exit(1)
+    
+###########################################################################
+# FIND IDS 
+###########################################################################
     
 # Make a set of IDs to make sure they are unique
 ID_set = set()
@@ -103,13 +108,14 @@ for line in infile:
 
 # Check if any ID is found
 if not ID_set:
+    logfile.write('No IDs found in '+alignmentfrag+'!')
     print('No IDs found in '+alignmentfrag+'!')
 
-# Print ID to outfile        
-#for ID in ID_set:       
-#    print(ID,file=ID_outfile)
 
-    
+###########################################################################
+# WRITE RESULT TO FILE
+###########################################################################
+
 for line in fastq_infile:
     line = line.decode('ascii')
     if line[0] == '@':
@@ -127,8 +133,7 @@ for line in fastq_infile:
 
 # Close files
 nomatch_outfile.close()
-match_outfile.close()
-#ID_outfile.close()            
+match_outfile.close()         
 infile.close()
 fastq_infile.close()
 
