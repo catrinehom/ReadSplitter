@@ -135,7 +135,7 @@ echo "" >> ${o}/${o}.log
 echo "Starting STEP 2: Find IDs"
 echo "Starting STEP 2: Find IDs" >> ${o}/${o}.log
 
-./IDSplitter.py -i $o/reads_alignment.frag.gz -f $i -o $o
+./IDSplitter.py -i $o/reads_alignment.frag.gz -f $i
 
 # Check if python script exited with an error
 if [ $? -eq 0 ]
