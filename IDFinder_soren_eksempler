@@ -1,5 +1,0 @@
-f='/srv/data/AS/CTHM/flongle_pT1/CPO20190170.q7.fastq.gz'
-i='/srv/data/AS/CTHM/scripts/CPO20190170/reads_alignment.frag.gz'
-
-
-./IDFinder_soren.py -i $i -f $f
