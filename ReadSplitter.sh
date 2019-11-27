@@ -30,7 +30,7 @@ source activate unicycler_v0.4.7_no_stall
 SECONDS=0
 
 # How to use program
-usage() { echo "Usage: $0 [-i <fastq filename>] [-r <references filename>] [-o <outputname>] [-g <optional Unicycler assembly.gfa>] [-f <optional Unicycler assembly.fasta>]" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [-i <fastq filename>] [-r <references filename>] [-o <outputname>]" 1>&2; exit 1; }
 
 
 # Parse flags
@@ -135,7 +135,7 @@ echo "" >> ${o}/${o}.log
 echo "Starting STEP 2: Find IDs"
 echo "Starting STEP 2: Find IDs" >> ${o}/${o}.log
 
-./IDSplitter.py -i $o/reads_alignment.frag.gz -f $i
+./IDSplitter.py -i $o/reads_alignment.frag.gz -f $i -o $o
 
 # Check if python script exited with an error
 if [ $? -eq 0 ]
