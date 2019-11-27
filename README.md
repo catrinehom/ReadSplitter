@@ -17,7 +17,7 @@ git clone https://github.com/catrinehom/ReadSplitter.git
 
 cd ReadSplitter/
 
-chmod a+x ReadSplitter.py
+chmod a+x ReadSplitter.sh
 chmod a+x ErrorHandling.py
 chmod a+x IDSplitter.py
 
