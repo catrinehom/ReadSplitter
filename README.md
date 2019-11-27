@@ -17,7 +17,10 @@ git clone https://github.com/catrinehom/ReadSplitter.git
 
 cd ReadSplitter/
 
-chmod a+x XXXXXX.py
+chmod a+x ReadSplitter.py
+chmod a+x ErrorHandling.py
+chmod a+x IDSplitter.py
+
 ```
 
 ### Move to bin 
@@ -35,7 +38,9 @@ OR
 Example of move to bin:
 
 ```
-mv XXXX.sh /usr/local/bin/
+mv ReadSplitter.sh /usr/local/bin/
+mv ErrorHandling.py /usr/local/bin/
+mv IDSplitter.py /usr/local/bin/
 
 ```
 
