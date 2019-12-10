@@ -121,7 +121,7 @@ mkdir $o/databases
 kma index -i $r -o $o/databases/reads_database
 
 #Command to run KMA:
-kma -i $i -o $o/reads_alignment -t_db $o/databases/reads_database -mrs 0.1 -bcNano -mp 20 -mem_mode
+kma -i $i -o $o/reads_alignment -t_db $o/databases/reads_database -mrs 0.5 -bcNano -mp 20 -mem_mode
 
 echo "Time stamp: $SECONDS seconds."
 echo "Time stamp: $SECONDS seconds." >> ${o}/${o}.log
