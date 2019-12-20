@@ -1,6 +1,6 @@
 # ReadSplitter
 
-ReadSplitter is a pipeline to find split a fastq file with reads from Nanopore MinION sequencing based on whether they map to your reference. 
+ReadSplitter is a pipeline to split a fastq file with reads from Nanopore MinION sequencing based on whether they map to your reference. 
 
 ## Requirements
 
