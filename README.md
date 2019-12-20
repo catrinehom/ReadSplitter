@@ -50,3 +50,7 @@ To run full pipeline:
 ./ReadSplitter.sh [-i <fastq filename>] [-r <references filename>] [-o <output filename>]
 ```
 
+## Pipeline overview
+
+![alt text](https://github.com/catrinehom/ContigIdentifyer/blob/master/ReadSplitter.png)
+
