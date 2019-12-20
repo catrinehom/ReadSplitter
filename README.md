@@ -52,5 +52,5 @@ To run full pipeline:
 
 ## Pipeline overview
 
-![alt text](https://github.com/catrinehom/ContigIdentifyer/blob/master/ReadSplitter.png)
+![alt text](https://github.com/catrinehom/ReadSplitter/blob/master/ReadSplitter.png)
 
